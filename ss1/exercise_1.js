@@ -58,5 +58,5 @@ const secondRequest = courses
 console.log(secondRequest);
 
 // Third Request
-const mergeCourses = [...courses, ...addedCourses];
-console.log(mergeCourses);
+const mergeCourses = (courses, addedCourses) => [...courses, ...addedCourses];
+console.log(mergeCourses(courses, addedCourses));
