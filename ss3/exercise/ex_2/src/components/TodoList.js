@@ -4,7 +4,7 @@ class TodoList extends Component {
     constructor() {
         super();
         this.state = {
-            todoList: [1, 2, 3, 4]
+            todoList: []
         }
     }
 
