@@ -29,7 +29,7 @@ const ContactForm = () => {
 
                     phone: Yup.string()
                         .required("Input phone " + err.empty)
-                        .matches( /^\d{10}$/ , 'Phone number not matches'),
+                        .matches( /^0\d{9}$/ , 'Phone number not matches'),
          
 
 
@@ -48,7 +48,7 @@ const ContactForm = () => {
                 <Form>
                     {/*input name */}
                     <div>
-                        <label>Name</label>
+                        <label forHtml='name'>Name</label>
                         <Field name='name' id='name' type='text' ></Field>
                         <ErrorMessage name='name'></ErrorMessage>
                     </div>
@@ -56,7 +56,7 @@ const ContactForm = () => {
 
                     {/* input email */}
                     <div>
-                        <label>Email</label>
+                        <label forHtml='email'>Email</label>
                         <Field name='email' id='email' type='text' ></Field>
                         <ErrorMessage name='email'></ErrorMessage>
                     </div>
@@ -64,14 +64,14 @@ const ContactForm = () => {
 
                     {/* input phone */}
                     <div>
-                        <label>Phone</label>
+                        <label forHtml='phone'>Phone</label>
                         <Field name='phone' id='phone' type='text' ></Field>
                         <ErrorMessage name='phone'></ErrorMessage>
                     </div>
 
                     <div>
                         {/* input message */}
-                        <label>Message</label>
+                        <label forHtml='message'>Message</label>
                         <Field as='textarea' name='message' id='message' ></Field>
                         <ErrorMessage name='message'></ErrorMessage>
                     </div>

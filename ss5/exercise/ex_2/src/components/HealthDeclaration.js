@@ -61,7 +61,8 @@ const HealthDeclaration = () => {
                         .required(err.empty + " Số nhà, phố, tổ dân phố /thôn /đội"),
 
                     phoneNumber: Yup.string()
-                        .required(err.empty + " số điện thoại"),
+                        .required(err.empty + " số điện thoại")
+                        .matches(/^0\d{9}$/,'Số điện thoại không hợp lệ'),
 
                     email: Yup.string()
                         .required(err.empty + " email")
