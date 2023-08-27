@@ -1,0 +1,74 @@
+{
+    "facility":[
+        {
+            "name": "House 1",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        },
+        {
+            "name": "House 2",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        },
+        {
+            "name": "Room 1",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        },
+        {
+            "name": "Room 2",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        },
+        {
+            "name": "Villa 1",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        },
+        {
+            "name": "Villa 1",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        },
+        {
+            "name": "Villa 2",
+            "type": ["Year","Month","Day"],
+            "room_standard": "vip",
+            "facility_area": 100,
+            "max_person": 20,
+            "pool_area": 50,
+            "floor_quantity": 3,
+            "fee": 1000
+        }
+    ]
+}
