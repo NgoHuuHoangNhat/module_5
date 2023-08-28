@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 const CustomerCreate = () => {
     return (
         <>
-            <div className="mt-5 mb-5">
+            <div className="mt-5 mb-5 ">
                 <div className="container-fluid container-fluid d-flex justify-content-center mt-5 mb-5">
                     <h1>Create Customer</h1>
                 </div>

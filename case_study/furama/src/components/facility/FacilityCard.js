@@ -122,7 +122,7 @@ const FacilityCard = () => {
                                 return (
                                     <div key={`f_${index}`} className="col-xl-4 col-lg-4 col-md-12 col-sm-12 pb-5">
                                         <div className="card" style={{ width: "25rem", }}>
-                                            <img src="https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+                                            <img src={facility.image}
                                                 className="card-img-top img-fluid" alt="..." />
                                             <div className="card-body">
                                                 <h5 className="card-title">{facility.name}</h5>

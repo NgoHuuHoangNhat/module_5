@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import * as facilityService from '../../services/FacilityService';
 import { Link } from "react-router-dom";
+import Modal from "../../common/Modal";
 
 const FacilityList = () => {
     const [facilityList, setFacilityList] = useState([]);
@@ -9,7 +10,32 @@ const FacilityList = () => {
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
     const [totalPage, setTotalPage] = useState(0);
+    const [dataModal, setDataModal] = useState({
+        show: false,
+        data: null
+    });
+    const showModal = (value) => {
+        setDataModal({
+            show: true,
+            data: value
+        })
+    }
 
+    const onDeleteFacility = async () => {
+        // const result = facilityService.removeFacility(dataModal.data.id);
+        console.log(dataModal.data);
+        setDataModal((pre)=>({
+            show: false,
+            data: null
+        }))
+    }
+
+    const onCloseModal = () => {
+        setDataModal((pre)=>({
+            show: false,
+            data: null
+        }))
+    }
     const getAllFacilityList = async () => {
         const result = await facilityService.getAllFacilityList(page, search);
         setFacilityList(result.data);
@@ -29,7 +55,7 @@ const FacilityList = () => {
     const handleSearch = async () => {
         let searchName = document.getElementById('search').value;
         setSearch(searchName);
-        setPage((prev)=> 1);
+        setPage((prev) => 1);
     }
 
     useEffect(() => {
@@ -83,11 +109,14 @@ const FacilityList = () => {
 
                                                     <Link to={`/facility/update/${facility.id}`}>
                                                         <button className="btn btn-outline-success me-4">
-                                                            Edit
+                                                            Update
                                                         </button>
                                                     </Link>
 
-                                                    <button className="btn btn-outline-danger">Delete</button>
+                                                    <button className="btn btn-outline-danger"
+                                                        onClick={() => showModal(`${facility}`)}
+                                                    >Delete</button>
+
                                                 </td>
                                             </tr>
                                         )
@@ -106,7 +135,12 @@ const FacilityList = () => {
                                 </nav>
                             </div> : "Facility list is empty"}
 
-
+                            {dataModal.show  && (
+                                <Modal msg={`Do you want to delete ${dataModal.data.name}`}
+                                    title={`Delete Facility`}
+                                    onClose={() => onCloseModal()}
+                                    onDelete={() => onDeleteFacility()} />
+                            )}
                         </div>
                     </div>
                 </div>
