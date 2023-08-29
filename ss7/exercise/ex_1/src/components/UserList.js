@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_ALL_USER_LIST, DELETE_USER } from '../redux/Types';
 
@@ -7,8 +7,7 @@ const UserList = () => {
     const dispatch = useDispatch();
     const getUserList = () => {
         dispatch({
-            type: GET_ALL_USER_LIST,
-            payload: null
+            type: GET_ALL_USER_LIST
         })
     }
 
@@ -34,15 +33,15 @@ const UserList = () => {
                     </tr>
                     {users.map((user, index) => {
                         return (
-                            <>
-                                <tr key={`u_${index}`}>
-                                    <td>{user.id}</td>
-                                    <td>{user.username}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.website}</td>
-                                    <td><button onClick={() => deleteUser(`${user.id}`)}>Delete user</button></td>
-                                </tr>
-                            </>
+
+                            <tr key={`u_${index}`}>
+                                <td>{user.id}</td>
+                                <td>{user.username}</td>
+                                <td>{user.email}</td>
+                                <td>{user.website}</td>
+                                <td><button onClick={() => deleteUser(`${user.id}`)}>Delete user</button></td>
+                            </tr>
+
                         )
                     })}
                 </thead>
