@@ -119,7 +119,7 @@ const CustomerUpdate = () => {
                     email: Yup.string()
                         .required("Email not empty")
                         .test('check-blank', 'Email must not be blank', (value) => value.trim().length !== 0)
-                        .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]$/, "Email not matches")
+                        .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Email not matches")
                         .min(3, 'Email cannot be less than 3 character')
                         .max(100, 'Email cannot be more than 100 character')
                         .test('check-duplicate', 'Email already exist', (value) => checkDuplicateEmail(value)),
@@ -133,7 +133,7 @@ const CustomerUpdate = () => {
                     phone_number: Yup.string()
                         .required("Phone number not empty")
                         .test('check-blank', 'Phone number must not be blank', (value) => value.trim().length !== 0)
-                        .matches(/((?:\(\+84\))|0)(90|91)\d{7}$/, 'Wrong phone number')
+                        .matches(/((?:\+84)|0)(90|91)\d{7}$/, 'Wrong phone number')
                         .test('check-duplicate', 'Phone number already exist', (value) => checkDuplicatePhoneNumber(value)),
 
 
@@ -143,6 +143,9 @@ const CustomerUpdate = () => {
                     setSubmitting(false);
                     let cloneValue = {...value};
                     cloneValue.type = JSON.parse(value.type);
+                    if (cloneValue.phone_number.length === 12) {
+                        cloneValue.phone_number = 0 + cloneValue.phone_number.slice(3);
+                    }
                     const result = await updateCustomer(cloneValue);
                     if (result.status === 200) {
                         navigate('/customer/list');

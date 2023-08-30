@@ -11,7 +11,16 @@ export const getContractList = async (page, start, end) => {
 
 export const findByCode = async (code) => {
     try {
-        const result = await axios.get(`http://localhost:8080/bookings?code=${code}`);
+        const result = await axios.get(`http://localhost:8080/bookings?contract_code=${code}`);
+        return result;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+export const addContract = async (contract) => {
+    try {
+        const result = await axios.post(`http://localhost:8080/bookings`,contract);
         return result;
     } catch (e) {
         console.log(e);

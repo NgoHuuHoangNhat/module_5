@@ -58,7 +58,7 @@ const FacilityCreate = () => {
                         .test('check-length', 'Name not only space', (value) => value.trim().length > 0)
                         .matches(/^(RO|HO|VL)-\d{4}$/, 'Code not matches')
                         .test('check-duplicate', 'This code already exist', (value) => checkCode(value)),
-
+                    
                     name: Yup.string()
                         .required('Name not empty')
                         .test('check-length', 'Name not only space', (value) => value.trim().length > 0)

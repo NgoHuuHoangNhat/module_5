@@ -35,19 +35,19 @@ const Header = () => {
                                 <li><Link className="dropdown-item" to="contract/list">List Contract</Link></li>
                             </ul>
                         </li>
-                        
-                
-                        <li className="nav-item">
-                            <Link className="nav-link " to="#">Login</Link>
-                        </li>
+
+
+
                     </ul>
 
-                    <form className="d-flex">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-light" type="submit">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </form>
+                    <div className="d-flex">
+                        <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style={{ bsScrollHeight: "100px", }}>
+                            <li className="nav-item">
+                                <Link className="nav-link " to="#">Login</Link>
+                            </li>
+                        </ul>
+
+                    </div>
 
                 </div>
             </div>

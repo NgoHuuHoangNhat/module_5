@@ -69,7 +69,7 @@ const CustomerCreate = () => {
         }
 
     }
-   
+
     if (!customerTypeList) {
         return null;
     }
@@ -104,37 +104,41 @@ const CustomerCreate = () => {
 
                     birthday: Yup.date()
                         .required('Birthday not empty')
-                        .min(new Date(new Date().setFullYear(new Date().getFullYear() - 70)),'Age must be less than 70')
+                        .min(new Date(new Date().setFullYear(new Date().getFullYear() - 70)), 'Age must be less than 70')
                         .max(new Date(new Date().setFullYear(new Date().getFullYear() - 18)), 'Age must be more 18')
                     ,
 
                     email: Yup.string()
                         .required("Email not empty")
                         .test('check-blank', 'Email must not be blank', (value) => value.trim().length !== 0)
-                        .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]$/, "Email not matches")
+                        .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Email not matches")
                         .min(3, 'Email cannot be less than 3 character')
                         .max(100, 'Email cannot be more than 100 character')
                         .test('check-duplicate', 'Email already exist', (value) => checkDuplicateEmail(value)),
+
                     type: Yup.string()
                         .required("please select one option"),
+
                     id_card: Yup.string()
                         .required("Id card not empty")
-                        .matches(/^\d{9}$|^\d{12}$/,'Id card is 9 or 12 numbers')
+                        .matches(/^\d{9}$|^\d{12}$/, 'Id card is 9 or 12 numbers')
                         .test('check-blank', 'Id card must not be blank', (value) => value.trim().length !== 0)
                         .test('check-duplicate', 'Id card already exist', (value) => checkDuplicateIdCard(value)),
+
                     phone_number: Yup.string()
                         .required("Phone number not empty")
                         .test('check-blank', 'Phone number must not be blank', (value) => value.trim().length !== 0)
-                        .matches(/((?:\(\+84\))|0)(90|91)\d{7}$/, 'Wrong phone number')
+                        .matches(/((?:\+84)|0)(90|91)\d{7}/, 'Wrong phone number')
                         .test('check-duplicate', 'Phone number already exist', (value) => checkDuplicatePhoneNumber(value)),
-
-
                 })}
                 onSubmit={async (value, { setSubmitting, resetForm }) => {
                     setSubmitting(false);
-                    console.log(value);
-                    value.type = JSON.parse(value.type);
-                    const result = await addCustomer(value);
+                    let cloneValue = {...value};
+                    if (cloneValue.phone_number.length === 12) {
+                        cloneValue.phone_number = 0 + cloneValue.phone_number.slice(3);
+                    }
+                    cloneValue.type = JSON.parse(cloneValue.type);
+                    const result = await addCustomer(cloneValue);
                     if (result.status === 201) {
                         resetForm();
                     }

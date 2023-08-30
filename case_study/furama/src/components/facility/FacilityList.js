@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import * as facilityService from '../../services/FacilityService';
 import { Link } from "react-router-dom";
 import Modal from "../../common/Modal";
+import { toast } from "react-toastify";
 
 const FacilityList = () => {
     const [facilityList, setFacilityList] = useState([]);
@@ -17,22 +17,27 @@ const FacilityList = () => {
     const showModal = (value) => {
         setDataModal({
             show: true,
-            data: value
+            data: value.facility
         })
     }
 
     const onDeleteFacility = async () => {
-        // const result = facilityService.removeFacility(dataModal.data.id);
-        console.log(dataModal.data);
-        setDataModal((pre)=>({
-            show: false,
-            data: null
-        }));
-        getAllFacilityList();
+        console.log(dataModal.data.id);
+        const result = await facilityService.removeFacility(dataModal.data.id);
+        if (result.status === 200) {
+            toast(`Facility: ${dataModal.data.name} has delete`);
+            setDataModal(({
+                show: false,
+                data: null
+            }));
+            getAllFacilityList();
+        }else{
+            toast(`Facility: ${dataModal.data.name}  delete failed`);
+        }
     }
 
     const onCloseModal = () => {
-        setDataModal((pre)=>({
+        setDataModal(({
             show: false,
             data: null
         }))
@@ -56,7 +61,7 @@ const FacilityList = () => {
     const handleSearch = async () => {
         let searchName = document.getElementById('search').value;
         setSearch(searchName);
-        setPage((prev) => 1);
+        setPage(1);
     }
 
     useEffect(() => {
@@ -86,7 +91,7 @@ const FacilityList = () => {
                     <div className="container-fluid " style={{ marginTop: "2rem", }}>
                         <div className="mx-auto row" style={{ width: "90%", }}>
 
-                            <table className="table table-houver">
+                            <table className="table table-light table-hover table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -105,7 +110,7 @@ const FacilityList = () => {
                                                 <td>{facility.name}</td>
                                                 <td>{facility.room_standard}</td>
                                                 <td>{facility.max_person}</td>
-                                                <td>{facility.fee}</td>
+                                                <td>$ {facility.fee}</td>
                                                 <td className="d-flex justify-content-center ">
 
                                                     <Link to={`/facility/update/${facility.id}`}>
@@ -115,7 +120,7 @@ const FacilityList = () => {
                                                     </Link>
 
                                                     <button className="btn btn-outline-danger"
-                                                        onClick={() => showModal(`${facility}`)}
+                                                        onClick={() => showModal({ facility })}
                                                     >Delete</button>
 
                                                 </td>
@@ -136,7 +141,7 @@ const FacilityList = () => {
                                 </nav>
                             </div> : "Facility list is empty"}
 
-                            {dataModal.show  && (
+                            {dataModal.show && (
                                 <Modal msg={`Do you want to delete ${dataModal.data.name}`}
                                     title={`Delete Facility`}
                                     onClose={() => onCloseModal()}

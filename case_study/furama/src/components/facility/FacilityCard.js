@@ -4,7 +4,7 @@ import * as facilityService from '../../services/FacilityService';
 import { Link } from "react-router-dom";
 
 const FacilityCard = () => {
-    const [facilityList, setFacilityList] = useState([]);
+    const [facilityList, setFacilityList] = useState();
     const [totalFacility, setTotalFacility] = useState(0);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
@@ -40,9 +40,7 @@ const FacilityCard = () => {
 
     }, [search, page])
 
-    if (facilityList.length === 0) {
-        return null;
-    }
+
     return (
         <>
             {/* carousel */}
@@ -115,50 +113,50 @@ const FacilityCard = () => {
 
 
             {/* card */}
+            {facilityList && (
+                <div className="container-fluid">
+                    <div>
+                        <div className="container-fluid " style={{ marginTop: "2rem", }}>
 
-            <div className="container-fluid">
-                <div>
-                    <div className="container-fluid " style={{ marginTop: "2rem", }}>
+                            <div className="mx-auto row" style={{ width: "90%", }}>
 
-                        <div className="mx-auto row" style={{ width: "90%", }}>
-
-                            {facilityList.map((facility, index) => {
-                                return (
-                                    <div key={`f_${index}`} className="col-xl-4 col-lg-4 col-md-12 col-sm-12 pb-5">
-                                        <div className="card" style={{ width: "25rem", }}>
-                                            <img src={facility.image}
-                                                className="card-img-top img-fluid" alt="..." />
-                                            <div className="card-body">
-                                                <h5 className="card-title">{facility.name}</h5>
-                                                <p className="card-text">
-                                                    Area: {facility.facility_area} m<sup>2</sup><br />
-                                                    Price: $ {facility.fee}
-                                                </p>
-                                                <Link to={`/contract/create/${facility.id}`}
-                                                    className="btn btn-outline-dark mx-2">Booking</Link>
-                                                <div href="#" className="btn btn-outline-dark">Detail</div>
+                                {facilityList.map((facility, index) => {
+                                    return (
+                                        <div key={`f_${index}`} className="col-xl-4 col-lg-4 col-md-12 col-sm-12 pb-5">
+                                            <div className="card" style={{ width: "25rem", }}>
+                                                <img src={facility.image}
+                                                    className="card-img-top img-fluid" alt="..." />
+                                                <div className="card-body">
+                                                    <h5 className="card-title">{facility.name}</h5>
+                                                    <p className="card-text">
+                                                        Area: {facility.facility_area} m<sup>2</sup><br />
+                                                        Price: $ {facility.fee}
+                                                    </p>
+                                                    <Link to={`/contract/create/${facility.id}`}
+                                                        className="btn btn-outline-dark mx-2">Booking</Link>
+                                                    <div href="#" className="btn btn-outline-dark">Detail</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )
+                                    )
 
-                            })}
-                            {totalFacility !== 0 ? <div className="d-flex justify-content-center mx-auto">
-                                <nav aria-label="Page navigation example">
-                                    <ul className="pagination">
-                                        <li className="page-item"><a className="page-link" onClick={() => previosPage()} >Previous</a></li>
-                                        <li className="page-item"><span className="page-link" >{page !== 0 ? page : ""}</span></li>
-                                        <li className="page-item"><span className="page-link" >{totalPage}</span></li>
-                                        <li className="page-item"><a className="page-link" onClick={() => nextPage()} >Next</a></li>
-                                    </ul>
-                                </nav>
-                            </div> : "Facility list is empty"}
-
-
+                                })}
+                                {totalFacility > 1 ? <div className="d-flex justify-content-center mx-auto">
+                                    <nav aria-label="Page navigation example">
+                                        <ul className="pagination">
+                                            <li className="page-item"><a className="page-link" onClick={() => previosPage()} >Previous</a></li>
+                                            <li className="page-item"><span className="page-link" >{page !== 0 ? page : ""}</span></li>
+                                            <li className="page-item"><span className="page-link" >{totalPage}</span></li>
+                                            <li className="page-item"><a className="page-link" onClick={() => nextPage()} >Next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div> : ""}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div >
+                </div >
+            )}
+
         </>
     )
 }

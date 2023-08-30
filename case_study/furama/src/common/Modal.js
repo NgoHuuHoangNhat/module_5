@@ -4,7 +4,7 @@ const Modal = ({ title, msg, onClose, onDelete }) => {
     return (
         <>
             <div style={{
-                position: 'fixed',
+                position: 'absolute',
                 top: 0,
                 left: 0,
                 right: 0,
@@ -12,7 +12,8 @@ const Modal = ({ title, msg, onClose, onDelete }) => {
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                zIndex: 1000
             }}>
                 <div className="modal-dialog"
                     style={{

@@ -1,17 +1,20 @@
-import { text } from "@fortawesome/fontawesome-svg-core";
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import * as customerService from '../../services/CustomerService';
 import { Link } from "react-router-dom";
+import Modal from "../../common/Modal";
+import { toast } from "react-toastify";
 
 const CustomerList = () => {
     const [customerList, setCustomerList] = useState([]);
     const [page, setPage] = useState(1);
     const [search, setSearch] = useState("");
     const [totalPage, setTotalPage] = useState(0);
+    const [dataModal, setDataModal] = useState({
+        show: false,
+        data: null,
+    })
     const getAllCustomer = async () => {
         const result = await customerService.getAllCustomer(page, search);
-        console.log(result);
         setCustomerList(result.data);
         setTotalPage(Math.ceil(result.headers['x-total-count'] / 3));
 
@@ -19,8 +22,15 @@ const CustomerList = () => {
     useEffect(() => {
 
         getAllCustomer();
-
     }, [page, search])
+
+    const showModal = (customer) => {
+        console.log(customer);
+        setDataModal({
+            show: true,
+            data: customer,
+        })
+    }
     const previousPage = () => {
         if (page > 1) {
             setPage((pre) => pre - 1)
@@ -28,15 +38,34 @@ const CustomerList = () => {
     }
     const handleSearch = () => {
         let searchName = document.getElementById('search').value;
-        setSearch((prev) => searchName)
-        setPage((prev) => 1);
+        setSearch(searchName)
+        setPage(1);
     }
     const nextPage = () => {
         if (page < totalPage) {
             setPage((pre) => pre + 1)
         }
     }
+    const onCloseModal = () => {
+        setDataModal({
+            show: false,
+            data: null
+        })
+    }
+    const onDelete = async () => {
+        const result = await customerService.deleteCustomer(dataModal.data.id);
+        if (result.status === 200) {
+            toast(`Customer: ${dataModal.data.name} has delete`);
+            setDataModal({
+                show: false,
+                data: null
+            })
+            getAllCustomer();
+        } else {
+            toast(`Customer: ${dataModal.data.name} delete failed`);
+        }
 
+    }
     if (customerList.length === 0) {
         return null;
     }
@@ -81,7 +110,9 @@ const CustomerList = () => {
                                                 <Link to={`/customer/update/${customer.id}`}>
                                                     <button type="button" className="btn btn-outline-warning mx-2">Update</button>
                                                 </Link>
-                                                <button type="button" className="btn btn-outline-danger mx-2">Delete</button>
+                                                <button type="button"
+                                                    onClick={() => showModal(customer)}
+                                                    className="btn btn-outline-danger mx-2">Delete</button>
                                             </td>
                                         </tr>
                                     </>
@@ -100,7 +131,13 @@ const CustomerList = () => {
                             </ul>
                         </nav>
                     </div>}
-
+                    {dataModal.show && (
+                        <Modal title={`Delete Customer`}
+                            msg={`Do you want delete: ${dataModal.data.name}`}
+                            onClose={() => onCloseModal()}
+                            onDelete={() => onDelete()}
+                        />
+                    )}
                 </div>
             </div>
         </>

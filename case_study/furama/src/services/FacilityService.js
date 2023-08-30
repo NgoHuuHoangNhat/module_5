@@ -1,5 +1,4 @@
 import axios from "axios";
-import FacilityCreate from "../components/facility/FacilityCreate";
 
 
 export const getAllFacilityList = async (page, search) => {
@@ -50,6 +49,15 @@ export const updateFacility = async (facility) => {
 export const findByCode = async (code) => {
     try {
         const result = await axios.get(`http://localhost:8080/facility/code=${code}`)
+        return result;
+    } catch (e) {
+        return 500;
+    }
+}
+
+export const removeFacility = async (id) => {
+    try {
+        const result = await axios.delete(`http://localhost:8080/facility/${id}`);
         return result;
     } catch (e) {
         return 500;

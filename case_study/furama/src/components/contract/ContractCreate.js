@@ -5,11 +5,22 @@ import * as facilityService from "../../services/FacilityService";
 import * as contractService from "../../services/ContractService";
 import * as customerService from "../../services/CustomerService";
 import * as Yup from 'yup';
+import { toast } from "react-toastify";
 
 const ContractCreate = () => {
     const navigate = useNavigate();
     const [facility, setFacility] = useState();
     const params = useParams();
+
+    const addContract = async (value) => {
+        const result = await contractService.addContract(value);
+        if(result.status === 200){
+            toast(`Add contract: ${value.name} success`);
+            navigate('/');
+        }else{
+            toast(`Add contract: ${value.name} failed`);
+        }
+    }
 
     const getFacilityById = async () => {
         const result = await facilityService.findById(params.id);
@@ -17,6 +28,7 @@ const ContractCreate = () => {
     }
     const checkDuplicateContractCode = async (code) => {
         const result = await contractService.findByCode(code);
+        console.log(result);
         if (result.data.length !== 0) {
             return false;
         }
@@ -29,16 +41,19 @@ const ContractCreate = () => {
         }
         return false;
     }
+
+
     const checkEndDate = (value) => {
         const startDate = document.getElementById('start_date').value;
-        // console.log(startDate);
-        // console.log(Date.parse(startDate));
-        console.log(new Date(startDate).toUTCString());
+        if (new Date(startDate) >= new Date(value)) {
+            return false;
+        }
+        return true;
     }
 
     const checkTotalPayment = (value) => {
         const depositInput = +document.getElementById('deposit').value;
-        if(depositInput > value){
+        if (depositInput > value) {
             return false;
         }
         return true;
@@ -82,7 +97,7 @@ const ContractCreate = () => {
                         .min(new Date(), "Start date must be greater than current")
                         .max(new Date(new Date().setFullYear(new Date().getFullYear() + 1)),
                             "Can only book within 1 year from now.")
-                        .test('check-end-date', '', (value) => checkEndDate(value)),
+                        .test('check-end-date', 'End date must be more than start date', (value) => checkEndDate(value)),
                     deposit: Yup.number()
                         .required("Deposit not empty")
                         .positive("deposit is positive")
@@ -95,6 +110,10 @@ const ContractCreate = () => {
                         .max(1000, "Total payment must be more than $ 1000 ")
                         .test('check-payment', 'Total payment must be more than deposit', (value) => checkTotalPayment(value))
                 })}
+                onSubmit={(values, { setSubmitting }) => {
+                    setSubmitting(false);
+                    addContract(values);                    
+                }}
             >
                 <Form>
                     <div className="container row mx-auto mt-5">
@@ -151,10 +170,7 @@ const ContractCreate = () => {
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div className="col-md-6 col-sm-12 mb-3">
-
                                         <div className="md-form">
                                             <label htmlFor="deposit">Deposit</label>
                                             <Field type="number" id="deposit" name="deposit" rows="2"
@@ -163,10 +179,8 @@ const ContractCreate = () => {
                                                 <ErrorMessage component='small' name="deposit" className="text-danger" />
                                             </div>
                                         </div>
-
                                     </div>
                                     <div className="col-md-6 col-sm-12 mb-3">
-
                                         <div className="md-form">
                                             <label htmlFor="total_payment">Total payment</label>
                                             <Field type="number" id="total_payment" name="total_payment" rows="2"
@@ -178,10 +192,8 @@ const ContractCreate = () => {
 
                                     </div>
                                 </div>
-                                <button className="btn btn-dark w-100 col-md-12 mt-3">Send</button>
-
+                                <button className="btn btn-dark w-100 col-md-12 mt-3">Save</button>
                             </section>
-
                         </div>
                     </div>
                 </Form>

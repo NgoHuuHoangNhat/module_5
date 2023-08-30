@@ -1,23 +1,6 @@
 {
   "facility": [
     {
-      "id": 1,
-      "code": "HO-0001",
-      "name": "House 1",
-      "type": [
-        "Year",
-        "Month",
-        "Day"
-      ],
-      "room_standard": "vip",
-      "facility_area": 100,
-      "max_person": 20,
-      "pool_area": 50,
-      "floor_quantity": 3,
-      "fee": 1000,
-      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
-    },
-    {
       "id": 2,
       "code": "HO-0002",
       "name": "House 2",
@@ -121,21 +104,6 @@
     }
   ],
   "customers": [
-    {
-      "id": 1,
-      "code": "C-0001",
-      "name": "Nhat",
-      "gender": "true",
-      "birthday": "1996-03-31",
-      "email": "hoangnhat3103@gmail.com",
-      "id_card": "123456789",
-      "phone_number": "0903123123",
-      "type": {
-        "id": 5,
-        "name": "Diamond"
-      },
-      "address": "Quang Tri"
-    },
     {
       "id": 2,
       "code": "C-0002",
@@ -255,6 +223,21 @@
       },
       "address": "123123",
       "id": 9
+    },
+    {
+      "id": 10,
+      "code": "C-0011",
+      "name": "Nhat",
+      "gender": "true",
+      "birthday": "1996-12-12",
+      "email": "hoangnhat3103@gmail.com",
+      "id_card": "123321123",
+      "phone_number": "0901232123",
+      "type": {
+        "id": 2,
+        "name": "Silver"
+      },
+      "address": "123"
     }
   ],
   "customer_type": [
@@ -329,6 +312,16 @@
       "end_date": "2022-02-09 00-00-00",
       "deposit": 100,
       "total_payment": 300
+    },
+    {
+      "contract_code": "CC-0009",
+      "facility_code": "HO-0001",
+      "customer_code": "C-0009",
+      "start_date": "2023-12-12T00:12",
+      "end_date": "2023-12-12T01:01",
+      "deposit": 50,
+      "total_payment": 60,
+      "id": 6
     }
   ]
 }
