@@ -27,7 +27,8 @@ const FacilityList = () => {
         setDataModal((pre)=>({
             show: false,
             data: null
-        }))
+        }));
+        getAllFacilityList();
     }
 
     const onCloseModal = () => {

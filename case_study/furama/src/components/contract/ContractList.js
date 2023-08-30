@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getContractList } from "../../services/ContractService";
 
 const ContractList = () => {
+    const [contractList, setContractList] = useState();
+    const [page, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState();
+    const getAll = async () => {
+        const result = await getContractList(page);
+        setContractList((pre) => result.data);
+        setTotalPage(Math.ceil(result.headers['x-total-count'] / 3));
+    }
+    useEffect(() => {
+        getAll();
+    }, [page])
+    const previousPage = () => {
+        if (page > 1) {
+            setPage((pre) => pre - 1)
+        }
+    }
+    const nextPage = () => {
+        if (page < totalPage) {
+            setPage((pre) => pre + 1)
+        }
+    }
+
+    if (!contractList) {
+        return null;
+    }
     return (
         <>
 
@@ -14,61 +40,41 @@ const ContractList = () => {
                             <th scope="col">#</th>
                             <th scope="col">Contract code</th>
                             <th scope="col">Facility code</th>
-                            <th scope="col">Facility name</th>
-                            <th scope="col">Start date</th>
-                            <th scope="col">End date</th>
+                            <th scope="col">Start date time</th>
+                            <th scope="col">End date time</th>
                             <th scope="col">Deposit</th>
                             <th scope="col">Total payment</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>C-0001</td>
-                            <td>RO-0001</td>
-                            <td>Room 1</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>10 000 000</td>
-                            <td>20 000 000</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>C-0002</td>
-                            <td>HO-0001</td>
-                            <td>House 1</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>10 000 000</td>
-                            <td>20 000 000</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>C-0003</td>
-                            <td>VL-0001</td>
-                            <td>Villa 1</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>10 000 000</td>
-                            <td>20 000 000</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>C-0004</td>
-                            <td>RO-0004</td>
-                            <td>Room 4</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>01-01-2020 12-12-12</td>
-                            <td>10 000 000</td>
-                            <td>20 000 000</td>
-                        </tr>
-
+                        {contractList.map((contract, index) => {
+                            return (
+                                <tr key={`CL_${index}`}>
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{contract.contract_code}</td>
+                                    <td>{contract.facility_code}</td>
+                                    <td>{contract.start_date}</td>
+                                    <td>{contract.end_date}</td>
+                                    <td>$ {contract.deposit}</td>
+                                    <td>$ {contract.total_payment}</td>
+                                    <td>
+                                        <button className="btn btn-outline-success">Detail</button>
+                                    </td>
+                                </tr>
+                            )
+                        })}
                     </tbody>
                 </table>
-                <div className="d-flex justify-content-center">
-                    <span>Previos</span>&nbsp;
-                    <span>1 / 1</span>&nbsp;
-                    <span>Next</span>
+                <div className="d-flex justify-content-center mx-auto">
+                    <nav aria-label="Page navigation example ">
+                        <ul class="pagination">
+                            <li class="page-item"><span class="page-link" onClick={() => previousPage()} href="#">Previous</span></li>
+                            <li class="page-item"><span class="page-link" href="#">{page}</span></li>
+                            <li class="page-item"><span class="page-link" href="#">{totalPage}</span></li>
+                            <li class="page-item"><span class="page-link" onClick={() => nextPage()} href="#">Next</span></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </>

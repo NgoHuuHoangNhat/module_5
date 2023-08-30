@@ -40,7 +40,16 @@ export const findById = async (id) => {
 
 export const updateFacility = async (facility) => {
     try {
-        const result = await axios.get(`http://localhost:8080/facility/${facility.id}`,facility)
+        const result = await axios.get(`http://localhost:8080/facility/${facility.id}`, facility)
+        return result;
+    } catch (e) {
+        return 500;
+    }
+}
+
+export const findByCode = async (code) => {
+    try {
+        const result = await axios.get(`http://localhost:8080/facility/code=${code}`)
         return result;
     } catch (e) {
         return 500;

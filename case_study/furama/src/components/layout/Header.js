@@ -25,34 +25,18 @@ const Header = () => {
                         <li className="nav-item dropdown">
                             <label className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Facility
+                                Actions
                             </label>
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="facility/create">Create Facility</Link></li>
                                 <li><Link className="dropdown-item" to="facility/list">List Facility</Link></li>
-                            </ul>
-                        </li>
-                        <li className="nav-it   em dropdown">
-                            <label className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Customer
-                            </label>
-                            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="customer/create">Create Customer</Link></li>
-                                <li><Link className="dropdown-item" to="customer/update">Update Customer</Link></li>
                                 <li><Link className="dropdown-item" to="customer/list">List Customer</Link></li>
-                            </ul>
-                        </li>
-                        <li className="nav-item dropdown">
-                            <label className="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Contract
-                            </label>
-                            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li><Link className="dropdown-item" to="contract/create">Create Contract</Link></li>
                                 <li><Link className="dropdown-item" to="contract/list">List Contract</Link></li>
                             </ul>
                         </li>
+                        
+                
                         <li className="nav-item">
                             <Link className="nav-link " to="#">Login</Link>
                         </li>

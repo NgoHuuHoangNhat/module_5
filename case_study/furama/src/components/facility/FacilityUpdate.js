@@ -53,11 +53,11 @@ const FacilityUpdate = () => {
                     code: facility?.code,
                     name: facility?.name,
                     type: facility?.type,
-                    roomStandard: facility?.room_standard,
-                    facilityArea: facility?.facility_area,
-                    maxPersons: facility?.max_person,
-                    poolArea: facility?.pool_area,
-                    floorQuantity: facility?.floor_quantity,
+                    room_standard: facility?.room_standard,
+                    facility_area: facility?.facility_area,
+                    max_persons: facility?.max_person,
+                    pool_area: facility?.pool_area,
+                    floor_quantity: facility?.floor_quantity,
                     fee: facility?.fee
                 }}
 
@@ -71,26 +71,26 @@ const FacilityUpdate = () => {
                     type: Yup.array()
                         .test('check-type', "Type not empty", (value) => validateType(value)),
 
-                    roomStandard: Yup.string()
+                        room_standard: Yup.string()
                         .required("Room standard not empty")
                         .test('check-length', 'Room standard not only space', (value) => value.trim().length > 0),
 
-                    facilityArea: Yup.number()
+                    facility_area: Yup.number()
                         .required("Facility area not empty")
                         .min(30, 'Facility area not less than 30 m2')
                         .max(1000, 'Facility area not greater than 30 m2'),
 
-                    maxPersons: Yup.number()
+                    max_persons: Yup.number()
                         .required("Max person not empty")
                         .min(2, 'Max person not less than 2')
                         .max(20, 'Max person not greater than 20'),
 
-                    poolArea: Yup.number()
+                    pool_area: Yup.number()
                         .required("Pool area not empty")
                         .min(30, 'Pool area not less than 30 m2')
                         .max(1000, 'Pool area not greater than 30 m2'),
 
-                    floorQuantity: Yup.number()
+                    floor_quantity: Yup.number()
                         .required("Floor quantity not empty")
                         .min(1, 'Floor quantity not less than 1')
                         .max(5, 'Floor quantity not greater than 5'),
@@ -159,43 +159,43 @@ const FacilityUpdate = () => {
                                     </div>
 
                                     <div className="col-6">
-                                        <label htmlFor="roomStandard" className="form-label">Room standard</label>
-                                        <Field type="text" name='roomStandard' className="form-control" id="roomStandard" placeholder="room standard" />
+                                        <label htmlFor="room_standard" className="form-label">Room standard</label>
+                                        <Field type="text" name='room_standard' className="form-control" id="room_standard" placeholder="room standard" />
                                         <div style={{ height: '10px' }}>
-                                            <ErrorMessage component={`span`} className="text-danger" name='roomStandard' />
+                                            <ErrorMessage component={`span`} className="text-danger" name='room_standard' />
                                         </div>
                                     </div>
 
                                     <div className="col-md-6">
-                                        <label htmlFor="area" className="form-label">Facility area</label>
-                                        <Field type="number" className="form-control" name='facilityArea' id="area" placeholder="area" />
+                                        <label htmlFor="facility_area" className="form-label">Facility area</label>
+                                        <Field type="number" className="form-control" name='facility_area' id="facility_area" placeholder="area" />
                                         <div style={{ height: '10px' }}>
-                                            <ErrorMessage component={`span`} className="text-danger" name='facilityArea' />
+                                            <ErrorMessage component={`span`} className="text-danger" name='facility_area' />
                                         </div>
                                     </div>
 
                                     <div className="col-6">
-                                        <label htmlFor="maxPersons" className="form-label">Max persons</label>
-                                        <Field type="number" className="form-control" name='maxPersons' id="maxPersons" placeholder="max persons" />
+                                        <label htmlFor="max_persons" className="form-label">Max persons</label>
+                                        <Field type="number" className="form-control" name='max_persons' id="max_persons" placeholder="max persons" />
                                         <div style={{ height: '10px' }}>
-                                            <ErrorMessage component={`span`} className="text-danger" name='maxPersons' />
+                                            <ErrorMessage component={`span`} className="text-danger" name='max_persons' />
                                         </div>
                                     </div>
 
                                     <div className="col-4">
-                                        <label htmlFor="poolArea" className="form-label">Pool area</label>
-                                        <Field type="number" className="form-control" name='poolArea' id="poolArea" placeholder="pool area" />
+                                        <label htmlFor="pool_area" className="form-label">Pool area</label>
+                                        <Field type="number" className="form-control" name='pool_area' id="pool_area" placeholder="pool area" />
                                         <div style={{ height: '10px' }}>
-                                            <ErrorMessage component={`span`} className="text-danger" name='poolArea' />
+                                            <ErrorMessage component={`span`} className="text-danger" name='pool_area' />
                                         </div>
                                     </div>
 
 
                                     <div className="col-md-4">
-                                        <label htmlFor="floorQuantity" className="form-label">Floor quantity</label>
-                                        <Field type="number" className="form-control" name='floorQuantity' id="floorQuantity" placeholder="floor quantity" />
+                                        <label htmlFor="floor_quantity" className="form-label">Floor quantity</label>
+                                        <Field type="number" className="form-control" name='floor_quantity' id="floor_quantity" placeholder="floor quantity" />
                                         <div style={{ height: '10px' }}>
-                                            <ErrorMessage component={`span`} className="text-danger" name='floorQuantity' />
+                                            <ErrorMessage component={`span`} className="text-danger" name='floor_quantity' />
                                         </div>
                                     </div>
                                     <div className="col-4">

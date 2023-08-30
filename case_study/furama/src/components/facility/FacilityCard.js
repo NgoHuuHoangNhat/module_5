@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import * as facilityService from '../../services/FacilityService';
+import { Link } from "react-router-dom";
 
 const FacilityCard = () => {
     const [facilityList, setFacilityList] = useState([]);
@@ -13,7 +14,7 @@ const FacilityCard = () => {
         const result = await facilityService.getAllFacilityList(page, search);
         setFacilityList(result.data);
         setTotalFacility(result.headers['x-total-count']);
-        setTotalPage( Math.ceil(result.headers['x-total-count'] / 3));
+        setTotalPage(Math.ceil(result.headers['x-total-count'] / 3));
 
     }
     const previosPage = () => {
@@ -30,7 +31,7 @@ const FacilityCard = () => {
     const handleSearch = async () => {
         let searchName = document.getElementById('search').value;
         setSearch(searchName);
-        setPage((prev)=>1)
+        setPage((prev) => 1)
 
     }
 
@@ -39,6 +40,9 @@ const FacilityCard = () => {
 
     }, [search, page])
 
+    if (facilityList.length === 0) {
+        return null;
+    }
     return (
         <>
             {/* carousel */}
@@ -130,8 +134,9 @@ const FacilityCard = () => {
                                                     Area: {facility.facility_area} m<sup>2</sup><br />
                                                     Price: $ {facility.fee}
                                                 </p>
-                                                <a href="#" className="btn btn-primary mx-2">Booking</a>
-                                                <a href="#" className="btn btn-primary">Detail</a>
+                                                <Link to={`/contract/create/${facility.id}`}
+                                                    className="btn btn-outline-dark mx-2">Booking</Link>
+                                                <div href="#" className="btn btn-outline-dark">Detail</div>
                                             </div>
                                         </div>
                                     </div>

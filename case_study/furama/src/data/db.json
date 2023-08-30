@@ -1,74 +1,334 @@
 {
-    "facility":[
-        {
-            "name": "House 1",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        },
-        {
-            "name": "House 2",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        },
-        {
-            "name": "Room 1",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        },
-        {
-            "name": "Room 2",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        },
-        {
-            "name": "Villa 1",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        },
-        {
-            "name": "Villa 1",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        },
-        {
-            "name": "Villa 2",
-            "type": ["Year","Month","Day"],
-            "room_standard": "vip",
-            "facility_area": 100,
-            "max_person": 20,
-            "pool_area": 50,
-            "floor_quantity": 3,
-            "fee": 1000
-        }
-    ]
+  "facility": [
+    {
+      "id": 1,
+      "code": "HO-0001",
+      "name": "House 1",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 2,
+      "code": "HO-0002",
+      "name": "House 2",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 3,
+      "code": "RO-0001",
+      "name": "Room 1",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 4,
+      "code": "RO-0002",
+      "name": "Room 2",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 5,
+      "code": "VL-0001",
+      "name": "Villa 1",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 6,
+      "code": "VL-0003",
+      "name": "Villa 3",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    },
+    {
+      "id": 7,
+      "code": "VL-0002",
+      "name": "Villa 2",
+      "type": [
+        "Year",
+        "Month",
+        "Day"
+      ],
+      "room_standard": "vip",
+      "facility_area": 100,
+      "max_person": 20,
+      "pool_area": 50,
+      "floor_quantity": 3,
+      "fee": 1000,
+      "image": "https://furamavietnam.com/wp-content/uploads/2018/03/Vietnam_Danang_Furama_Ocean-Suite-Feature-370x239.jpg"
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "code": "C-0001",
+      "name": "Nhat",
+      "gender": "true",
+      "birthday": "1996-03-31",
+      "email": "hoangnhat3103@gmail.com",
+      "id_card": "123456789",
+      "phone_number": "0903123123",
+      "type": {
+        "id": 5,
+        "name": "Diamond"
+      },
+      "address": "Quang Tri"
+    },
+    {
+      "id": 2,
+      "code": "C-0002",
+      "name": "Tin",
+      "gender": "true",
+      "birthday": "1997-03-31",
+      "email": "tin@gmail.com",
+      "id_card": "123456788",
+      "phone_number": "0907123125",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Da Nang"
+    },
+    {
+      "id": 3,
+      "code": "C-0003",
+      "name": "Le Huy",
+      "gender": "true",
+      "birthday": "1989-03-31",
+      "email": "louis@gmail.com",
+      "id_card": "123456787",
+      "phone_number": "0903193123",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Da Nang"
+    },
+    {
+      "id": 4,
+      "code": "C-0004",
+      "name": "Long Vu",
+      "gender": "true",
+      "birthday": "1997-03-31",
+      "email": "longvu@gmail.com",
+      "id_card": "123456786",
+      "phone_number": "0903173823",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Da Nang"
+    },
+    {
+      "id": 5,
+      "code": "C-0005",
+      "name": "Viet Duy",
+      "gender": "true",
+      "birthday": "1988-03-31",
+      "email": "vietduy@gmail.com",
+      "id_card": "123456785",
+      "phone_number": "0901126123",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Da Nang"
+    },
+    {
+      "id": 6,
+      "code": "C-0006",
+      "name": "Co giao Minh Hanh",
+      "gender": "false",
+      "birthday": "1988-03-31",
+      "email": "minhhanh@gmail.com",
+      "id_card": "123456784",
+      "phone_number": "0909154323",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Viet Nam"
+    },
+    {
+      "id": 7,
+      "code": "C-0007",
+      "name": "Van Tinh",
+      "gender": "true",
+      "birthday": "1997-03-31",
+      "email": "vantin@gmail.com",
+      "id_card": "123456783",
+      "phone_number": "0909173123",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Quang Nom"
+    },
+    {
+      "code": "C-0008",
+      "name": "Nguyễn Lưu Minh Hạnh",
+      "gender": "false",
+      "birthday": "1994-01-01",
+      "email": "minhhanh94@gmail.com",
+      "id_card": "123456782",
+      "phone_number": "0903117326",
+      "type": {
+        "id": 1,
+        "name": "Member"
+      },
+      "address": "Danang VietNam",
+      "id": 8
+    },
+    {
+      "code": "C-0009",
+      "name": "Trần Việt Duy",
+      "gender": "true",
+      "birthday": "1988-12-12",
+      "email": "duy@gmail.com",
+      "id_card": "123456781",
+      "phone_number": "0987651121",
+      "type": {
+        "id": 5,
+        "name": "Diamond"
+      },
+      "address": "123123",
+      "id": 9
+    }
+  ],
+  "customer_type": [
+    {
+      "id": 1,
+      "name": "Member"
+    },
+    {
+      "id": 2,
+      "name": "Silver"
+    },
+    {
+      "id": 3,
+      "name": "Gold"
+    },
+    {
+      "id": 4,
+      "name": "Platinum"
+    },
+    {
+      "id": 5,
+      "name": "Diamond"
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "contract_code": "CC-0001",
+      "facility_code": "VL-0001",
+      "customer_code": "C-0001",
+      "start_date": "2022-01-01 00-00-00",
+      "end_date": "2022-01-05 00-00-00",
+      "deposit": 100,
+      "total_payment": 300
+    },
+    {
+      "id": 2,
+      "contract_code": "CC-0002",
+      "facility_code": "VL-0001",
+      "customer_code": "C-0002",
+      "start_date": "2022-02-01 00-00-00",
+      "end_date": "2022-02-05 00-00-00",
+      "deposit": 100,
+      "total_payment": 300
+    },
+    {
+      "id": 3,
+      "contract_code": "CC-0003",
+      "facility_code": "VL-0001",
+      "customer_code": "C-0003",
+      "start_date": "2022-01-10 00-00-00",
+      "end_date": "2022-01-20 00-00-00",
+      "deposit": 100,
+      "total_payment": 300
+    },
+    {
+      "id": 4,
+      "contract_code": "CC-0004",
+      "facility_code": "VL-0001",
+      "customer_code": "C-0004",
+      "start_date": "2022-02-14",
+      "end_date": "2022-02-20 00-00-00",
+      "deposit": 100,
+      "total_payment": 300
+    },
+    {
+      "id": 5,
+      "contract_code": "CC-0005",
+      "facility_code": "VL-0001",
+      "customer_code": "C-0005",
+      "start_date": "2022-02-06 00-00-00",
+      "end_date": "2022-02-09 00-00-00",
+      "deposit": 100,
+      "total_payment": 300
+    }
+  ]
 }
