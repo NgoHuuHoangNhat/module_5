@@ -1,0 +1,99 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "code": "P-0007",
+      "name": "quần nike",
+      "date": "2023-01-01",
+      "quantity": 100,
+      "type": {
+        "id": 1,
+        "name": "quần"
+      }
+    },
+    {
+      "id": 7,
+      "code": "P-0001",
+      "name": "quần adidas",
+      "date": "2023-01-01",
+      "quantity": 10,
+      "type": {
+        "id": 1,
+        "name": "quần"
+      }
+    },
+    {
+      "id": 2,
+      "code": "P-0002",
+      "name": "A chánh",
+      "date": "2023-01-12",
+      "quantity": 222,
+      "type": {
+        "id": 1,
+        "name": "quần"
+      }
+    },
+    {
+      "id": 3,
+      "code": "P-0003",
+      "name": "quần thể thao",
+      "date": "2023-01-01",
+      "quantity": 20,
+      "type": {
+        "id": 1,
+        "name": "quần"
+      }
+    },
+    {
+      "id": 4,
+      "code": "P-0004",
+      "name": "áo nike",
+      "date": "2023-01-05",
+      "quantity": 5,
+      "type": {
+        "id": 2,
+        "name": "áo"
+      }
+    },
+    {
+      "id": 5,
+      "code": "P-0005",
+      "name": "quần đùi",
+      "date": "2023-01-01",
+      "quantity": 10,
+      "type": {
+        "id": 1,
+        "name": "quần"
+      }
+    },
+    {
+      "id": 6,
+      "code": "P-0006",
+      "name": "dép nike",
+      "date": "2023-01-01",
+      "quantity": 30,
+      "type": {
+        "id": 3,
+        "name": "dép"
+      }
+    }
+  ],
+  "type": [
+    {
+      "id": 1,
+      "name": "quần"
+    },
+    {
+      "id": 2,
+      "name": "áo"
+    },
+    {
+      "id": 3,
+      "name": "dép"
+    },
+    {
+      "id": 4,
+      "name": "mũ"
+    }
+  ]
+}
