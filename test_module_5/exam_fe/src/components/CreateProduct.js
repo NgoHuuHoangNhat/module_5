@@ -15,12 +15,15 @@ const CreateProduct = () => {
         const result = await productTypeService.getProductTypes();
         setProductTypes(result.data);
     }
-    const addNewProduct = async (product) => {
+    const addNewProduct = async (product, setErrors) => {
         const result = await productService.addNewProduct(product);
         console.log(result);
-        if(result.status === 200){
+        if (result.status === 200) {
             toast(`Thêm mới thành công`);
             navigate(`/`);
+        } else {
+            console.log(result);
+            setErrors(result.response.data);
         }
     }
     useEffect(() => {
@@ -55,15 +58,16 @@ const CreateProduct = () => {
                     // clothesType: Yup.number()
                     //     .required("loại sản phẩm không được để trống")
                 })}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, setErrors }) => {
+                    setSubmitting(false);
+
                     let cloneValues = {
                         ...values,
                         clothesType: JSON.parse(values.clothesType)
                     }
                     console.log(cloneValues);
 
-                    setSubmitting(false);
-                    addNewProduct(cloneValues)
+                    addNewProduct(cloneValues, setErrors)
 
                 }}
             >

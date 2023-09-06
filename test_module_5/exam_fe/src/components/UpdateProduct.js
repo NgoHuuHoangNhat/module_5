@@ -19,11 +19,13 @@ const UpdateProduct = () => {
         const result = await productTypeService.getProductTypes();
         setProductTypes(result.data);
     }
-    const updateProduct = async (value) => {
+    const updateProduct = async (value, setErrors) => {
         const result = await productService.updateProduct(value);
-        if(result.status === 200){
+        if (result.status === 200) {
             toast(`Cập nhật ${value.name} thành công`);
             navigate("/")
+        } else {
+            setErrors(result.response.data);
         }
 
     }
@@ -60,7 +62,7 @@ const UpdateProduct = () => {
                     // type: Yup.string()
                     //     .required("loại sản phẩm không được để trống")
                 })}
-                onSubmit={(values, { setSubmitting }) => {
+                onSubmit={(values, { setSubmitting, setErrors }) => {
                     setSubmitting(false);
                     let cloneValues = {
                         ...values,
@@ -68,7 +70,7 @@ const UpdateProduct = () => {
                     }
                     console.log(cloneValues);
 
-                    updateProduct(cloneValues);
+                    updateProduct(cloneValues, setErrors);
 
                 }}
             >
@@ -87,7 +89,7 @@ const UpdateProduct = () => {
                                     <label htmlFor="name">Tên sản phẩm</label>
                                     <Field type="name" className="form-control" name='name' id="name"
                                         placeholder="tên sản phẩm" />
-                                    <div style={{height: '20px'}}>
+                                    <div style={{ height: '20px' }}>
                                         <ErrorMessage className="text-danger" component='small' name='name' />
                                         <small></small>
                                     </div>
@@ -95,7 +97,7 @@ const UpdateProduct = () => {
                                 <div className="form-group col-md-12 col-xl-12 col-lg-12 col-sm-12">
                                     <label htmlFor="date">Ngày nhập</label>
                                     <Field type="date" className="form-control" name='date' id="date" />
-                                    <div style={{height: '20px'}}>
+                                    <div style={{ height: '20px' }}>
                                         <ErrorMessage className="text-danger" component='small' name='date' />
                                     </div>
                                 </div>
@@ -103,7 +105,7 @@ const UpdateProduct = () => {
                                     <label htmlFor="quantity">Số lượng sản phẩm</label>
                                     <Field type="number" className="form-control" name='quantity' id="quantity"
                                     />
-                                    <div style={{height: '20px'}}>
+                                    <div style={{ height: '20px' }}>
                                         <ErrorMessage className="text-danger" component='small' name='quantity' />
                                     </div>
                                 </div>
@@ -111,7 +113,7 @@ const UpdateProduct = () => {
                                 <div className="form-group col-md-12 col-xl-12 col-lg-12 col-sm-12">
                                     <label htmlFor="clothesType">Loại sản phẩm</label>
                                     <Field as='select' name='clothesType' id="clothesType" className="form-control">
-                                        
+
                                         {productTypes.map((productType, index) => {
                                             return (
                                                 <option key={`PT_${index}`} value={JSON.stringify(productType)}>{productType.name}</option>
@@ -119,7 +121,7 @@ const UpdateProduct = () => {
 
                                         })}
                                     </Field>
-                                    <div style={{height: '20px'}}>
+                                    <div style={{ height: '20px' }}>
                                         <ErrorMessage className="text-danger" component='small' name="'select" />
                                     </div>
                                 </div>
