@@ -36,4 +36,7 @@ public interface IClothesRepository extends JpaRepository<Clothes, Long> {
     @Transactional
     @Query(value = "call create_clothes(:#{#clothes.code},:#{#clothes.name},:#{#clothes.date},:#{#clothes.quantity},:#{#clothes.clothesType.id})",nativeQuery = true)
     void addNewProduct(Clothes clothes);
+
+    @Query(value = "select * from clothes.clothes where clothes.code = :code",nativeQuery = true)
+    Clothes getClothesByCode(@Param("code") String code);
 }

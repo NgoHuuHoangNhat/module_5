@@ -1,5 +1,6 @@
 package com.example.exam_be.service.impl;
 
+import com.example.exam_be.clothes_dto.ClothesDto;
 import com.example.exam_be.model.Clothes;
 import com.example.exam_be.model.ClothesType;
 import com.example.exam_be.repository.IClothesRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 @Service
 public class ClothesService implements IClothesService {
@@ -40,5 +42,13 @@ public class ClothesService implements IClothesService {
     @Override
     public void deleteClothes(Long id) {
         clothesRepository.removeProduct(id);
+    }
+
+    @Override
+    public void checkDuplicateCode(ClothesDto clothesDto, BindingResult bindingResult) {
+        Clothes clothes = clothesRepository.getClothesByCode(clothesDto.getCode());
+        if(clothes != null){
+            bindingResult.rejectValue("code",null,"mã sản phẩm đã trùng lặp");
+        }
     }
 }

@@ -83,6 +83,20 @@ public class ClothesDto implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
+        ClothesDto clothesDto = (ClothesDto) target;
+        if(clothesDto.getName() == null || clothesDto.getName().trim().equals("")){
+            errors.rejectValue("name",null,"không có tên sản phẩm");
+        }
+        if(clothesDto.getDate() == null || clothesDto.getDate().trim().equals("")){
+            errors.rejectValue("date",null,"không có ngày nhập");
+        }
+        if(clothesDto.getQuantity() == null){
+            errors.rejectValue("quantity",null,"không có số lượng");
+        }else if(clothesDto.getQuantity() <= 0){
+            errors.rejectValue("quantity",null,"số lượng phải lớn hơn 0");
+        }
+        if(clothesDto.getClothesType() == null){
+            errors.rejectValue("clothesType",null,"không có loại sản phẩm");
+        }
     }
 }

@@ -12,8 +12,12 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -41,31 +45,45 @@ public class ClothesController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Clothes> updateClothes(@Valid @RequestBody ClothesDto clothesDto,
-                                                 BindingResult bindingResult) {
+    public ResponseEntity<?> updateClothes(@Valid @RequestBody ClothesDto clothesDto,
+                                           BindingResult bindingResult) {
         new ClothesDto().validate(clothesDto, bindingResult);
-        if(bindingResult.hasErrors()){
-
+        if (bindingResult.hasErrors()) {
+            Map<String, String> err = new HashMap<>();
+            for (FieldError e : bindingResult.getFieldErrors()) {
+                err.put(e.getField(), e.getDefaultMessage());
+            }
+            return new ResponseEntity<>(err, HttpStatus.NOT_ACCEPTABLE);
         }
         Clothes clothes = new Clothes();
         BeanUtils.copyProperties(clothesDto, clothes);
         clothesService.updateClothes(clothes);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @DeleteMapping("/{id}")
-    public  ResponseEntity<?> deleteProduct(@PathVariable Long id){
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
         clothesService.deleteClothes(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PostMapping("/create")
     public ResponseEntity<?> createClothes(@Valid @RequestBody ClothesDto clothesDto,
-                                           BindingResult bindingResult){
-        new ClothesDto().validate(clothesDto,bindingResult);
-        if(bindingResult.hasErrors()){
-
+                                           BindingResult bindingResult) {
+        new ClothesDto().validate(clothesDto, bindingResult);
+        if(!bindingResult.hasFieldErrors("code")){
+            System.out.println(1);
+            clothesService.checkDuplicateCode(clothesDto,bindingResult);
+        }
+        if (bindingResult.hasErrors()) {
+            Map<String, String> err = new HashMap<>();
+            for(FieldError e: bindingResult.getFieldErrors()){
+                err.put(e.getField(),e.getDefaultMessage());
+            }
+            return new ResponseEntity<>(err,HttpStatus.NOT_ACCEPTABLE);
         }
         Clothes clothes = new Clothes();
-        BeanUtils.copyProperties(clothesDto,clothes);
+        BeanUtils.copyProperties(clothesDto, clothes);
         System.out.println(clothes);
         clothesService.createClothes(clothes);
         return new ResponseEntity<>(HttpStatus.OK);
